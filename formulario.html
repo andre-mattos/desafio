@@ -1,0 +1,65 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Formulário</title>
+</head>
+<body>
+    <script>
+        function armazenar_Dados(){
+
+            var name = document.getElementById("name");
+            var age = document.getElementById("age");
+            var dados = JSON.parse(localStorage.getItem("dadosPessoas"));
+
+            if (dados==null){
+                localStorage.setItem("dadosPessoa", "[]");
+                dados = [];
+            }
+
+            var auxRegistro = {
+                nome: name.value,
+                idade: age.value
+            }
+            
+            dados.push(auxRegistro);
+            localStorage.setItem("dadosPessoa", JSON.stringify(dados));
+            
+            alert ("Usuario adicionado!")
+
+            name.value="";
+            age.value="";
+        }
+        
+    </script>
+    <form action="form" method="post">
+        <ul>
+        <li>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="user_name" />
+        </li>
+        <li>
+            <label for="age">Idade:</label>
+            <input type="number" id="age" name="user_age" />
+        </li>
+        <li>
+            <label for="profession">Profissão:</label>
+            <input type="text" id="profession" name="user_profession" />
+        </li>
+        <li>
+            <label for="mail">E-mail:</label>
+            <input type="email" id="mail" name="user_email" />
+        </li>
+        <li>
+            <label for="msg">Data de Preenchimento:</label>
+            <input type="date" name="date" name="user_date">
+        </li>
+        </ul>
+    </form>
+    <li class="button">
+        <button type="button" onclick="armazenar_Dados()" class="btn btn_primary">Adicionar</button>
+    </li>
+
+
+
+</body>
+</html>
